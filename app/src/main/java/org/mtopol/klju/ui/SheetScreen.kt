@@ -3,6 +3,9 @@ package org.mtopol.klju.ui
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.calculateZoom
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -63,6 +66,8 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
@@ -113,8 +118,9 @@ fun SheetScreen(vm: KljuViewModel) {
     val sheet by vm.sheet.collectAsState()
     var confirmClear by remember { mutableStateOf(false) }
     var editedPlayer by remember { mutableStateOf<Int?>(null) }
+    var showAbout by remember { mutableStateOf(false) }
 
-    Surface(Modifier.fillMaxSize()) {
+    Surface(Modifier.fillMaxSize().onPinchIn { showAbout = true }) {
         BoxWithConstraints(Modifier.windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal))) {
             val metrics = sheetMetrics(maxHeight)
             val density = LocalDensity.current
@@ -152,6 +158,8 @@ fun SheetScreen(vm: KljuViewModel) {
             },
         )
     }
+
+    if (showAbout) AboutDialog(onDismiss = { showAbout = false })
 
     editedPlayer?.let { player ->
         if (player !in sheet.players.indices) return@let
@@ -467,6 +475,35 @@ private class AboveAnchor(private val gap: Int) : PopupPositionProvider {
         return IntOffset(x, if (above >= 0) above else anchorBounds.bottom + gap)
     }
 }
+
+/**
+ * Calls [onPinchIn] once per gesture in which two fingers move together until their
+ * spread is [PinchInSpread] of what it was. Once a second finger touches down, the rest
+ * of the gesture is consumed, so it neither scrolls the sheet, nor swipes in a cover, nor
+ * taps a cell.
+ */
+private fun Modifier.onPinchIn(onPinchIn: () -> Unit) = pointerInput(Unit) {
+    awaitEachGesture {
+        awaitFirstDown(requireUnconsumed = false, pass = PointerEventPass.Initial)
+        var multiTouch = false
+        var zoom = 1f
+        var fired = false
+        do {
+            val event = awaitPointerEvent(PointerEventPass.Initial)
+            if (event.changes.count { it.pressed } >= 2) multiTouch = true
+            if (multiTouch) {
+                zoom *= event.calculateZoom()
+                event.changes.forEach { it.consume() }
+                if (!fired && zoom < PinchInSpread) {
+                    fired = true
+                    onPinchIn()
+                }
+            }
+        } while (event.changes.any { it.pressed })
+    }
+}
+
+private const val PinchInSpread = 0.75f
 
 /** Draws the horizontal grid line along a row's bottom edge. */
 private fun Modifier.bottomRule(color: Color) = drawBehind {
