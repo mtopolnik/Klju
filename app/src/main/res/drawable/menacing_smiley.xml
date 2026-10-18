@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+    <!-- Face -->
+    <path
+        android:fillColor="#FFE500"
+        android:pathData="M100,4a96,96 0,1 1,0 192a96,96 0,1 1,0 -192z" />
+    <!-- Narrowed eyes, inner corners pulled down -->
+    <group
+        android:pivotX="72"
+        android:pivotY="86"
+        android:scaleX="0.7"
+        android:scaleY="0.7">
+        <path
+            android:fillColor="#14161A"
+            android:pathData="M48,66L95,90Q82,104 66,99Q52,92 48,66Z" />
+    </group>
+    <group
+        android:pivotX="128"
+        android:pivotY="86"
+        android:scaleX="0.7"
+        android:scaleY="0.7">
+        <path
+            android:fillColor="#14161A"
+            android:pathData="M152,66L105,90Q118,104 134,99Q148,92 152,66Z" />
+    </group>
+    <!-- Grin: thickest at the bottom, tapering towards both ends -->
+    <path
+        android:fillColor="#14161A"
+        android:pathData="M44.44,113.58C60.1,166.8 139.9,166.8 155.56,113.58L158.44,114.42C141.8,177.2 58.2,177.2 41.56,114.42Z" />
+    <!-- End caps, perpendicular to the grin where it ends -->
+    <group
+        android:pivotX="43"
+        android:pivotY="114"
+        android:rotation="-16.4">
+        <path
+            android:fillColor="#14161A"
+            android:pathData="M32,114a11,3 0,1 1,22 0a11,3 0,1 1,-22 0z" />
+    </group>
+    <group
+        android:pivotX="157"
+        android:pivotY="114"
+        android:rotation="16.4">
+        <path
+            android:fillColor="#14161A"
+            android:pathData="M146,114a11,3 0,1 1,22 0a11,3 0,1 1,-22 0z" />
+    </group>
+</vector>
