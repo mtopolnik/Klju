@@ -8,7 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import org.mtopol.klju.ui.KljuTheme
-import org.mtopol.klju.ui.SheetScreen
+import org.mtopol.klju.ui.KljuApp
 
 class MainActivity : ComponentActivity() {
 
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             KljuTheme {
-                SheetScreen(viewModel)
+                KljuApp(viewModel)
             }
         }
     }
