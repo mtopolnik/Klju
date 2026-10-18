@@ -90,7 +90,7 @@ import org.mtopol.klju.Sheet
 
 private val NameColumnWidth = 132.dp
 private val HeaderHeight = 48.dp
-private val MinRowHeight = 32.dp
+private val MinRowHeight = 28.dp
 private val MaxRowHeight = 56.dp
 private const val CategoryToRowRatio = 0.75f
 
