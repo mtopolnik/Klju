@@ -29,3 +29,6 @@ keystore.properties
 
 # Claude Code
 .claude/
+
+# Play Store listing assets
+playstore/

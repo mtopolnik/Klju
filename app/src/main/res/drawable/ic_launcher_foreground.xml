@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- A menacing crow ("kljun" is Croatian for beak), tilted 15 degrees counterclockwise. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- Lens ring -->
-    <path
-        android:fillColor="#00000000"
-        android:strokeColor="#F3D58A"
-        android:strokeWidth="6"
-        android:pathData="M48,48m-15,0a15,15 0,1 1,30 0a15,15 0,1 1,-30 0" />
-    <!-- Handle -->
-    <path
-        android:fillColor="#00000000"
-        android:strokeColor="#F3D58A"
-        android:strokeWidth="8"
-        android:strokeLineCap="round"
-        android:pathData="M59,59L74,74" />
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="-15">
+        <!-- Upper mandible, drawn under the head so feathers cover its base -->
+        <path
+            android:fillColor="#3A3A41"
+            android:pathData="M49,41.5C39,40.5 29.5,46 22.5,57C21.8,58.8 23.2,59.8 24.6,58.6C30,55.6 38,55.2 49,55.6Z" />
+        <!-- Lower mandible, swung up around its hinge to nearly close the beak -->
+        <group
+            android:pivotX="49"
+            android:pivotY="59.5"
+            android:rotation="3">
+            <path
+                android:fillColor="#303036"
+                android:pathData="M49,56.3C41,56.3 34,57.3 28.5,59.3C34,62.6 41,63.6 49,62.6Z" />
+        </group>
+        <!-- Head and ragged neck -->
+        <path
+            android:fillColor="#141416"
+            android:pathData="M46,41C50,35 57,32 64,33L68,29L69,34L74,31L73,37C80,42 82,52 82,62L86,70L80,69L82,76L76,73L76,82C66,78 56,72 49,64C45,61 43,56 43.5,51.5C43.8,47 44.5,43.5 46,41Z" />
+        <!-- Eye, slit pupil, and the angry brow cutting across its top -->
+        <path
+            android:fillColor="#F3D58A"
+            android:pathData="M50.5,47.5a5,4.2 0,1 1,10 0a5,4.2 0,1 1,-10 0z" />
+        <path
+            android:fillColor="#141416"
+            android:pathData="M52.9,48a1.6,2.6 0,1 1,3.2 0a1.6,2.6 0,1 1,-3.2 0z" />
+        <path
+            android:fillColor="#141416"
+            android:pathData="M49.5,50.5L61.5,44L61.5,42L49.5,42Z" />
+    </group>
 </vector>
