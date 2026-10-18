@@ -6,7 +6,7 @@
     android:viewportHeight="200">
     <!-- Face -->
     <path
-        android:fillColor="#FFE500"
+        android:fillColor="#E4BD00"
         android:pathData="M100,4a96,96 0,1 1,0 192a96,96 0,1 1,0 -192z" />
     <!-- Narrowed eyes, inner corners pulled down -->
     <group
