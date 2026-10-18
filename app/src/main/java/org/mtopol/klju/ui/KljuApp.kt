@@ -1,5 +1,6 @@
 package org.mtopol.klju.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -32,6 +33,8 @@ private const val MAX_TILT_DEGREES = 30f
 @Composable
 fun KljuApp(vm: KljuViewModel) {
     val pager = rememberPagerState(initialPage = SHEET_PAGE) { 3 }
+    // An accidental back press mid-game would drop the player out of the app, so back does nothing.
+    BackHandler {}
     // Keeping the neighbouring page composed preserves the sheet's state while a cover is shown.
     HorizontalPager(pager, Modifier.fillMaxSize(), beyondViewportPageCount = 1) { page ->
         if (page == SHEET_PAGE) SheetScreen(vm) else PrivacyCover(tilt = { coverTilt(pager, page) })
