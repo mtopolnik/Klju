@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Klju</string>
+
+    <string name="add_player">Dodaj igrača</string>
+    <string name="clear_sheet">Očisti listić</string>
+    <string name="clear_sheet_title">Očistiti listić?</string>
+    <string name="clear_sheet_text">Sve oznake bit će obrisane. Imena igrača ostaju.</string>
+    <string name="clear">Očisti</string>
+    <string name="cancel">Odustani</string>
+    <string name="ok">U redu</string>
+    <string name="player_name">Ime igrača</string>
+    <string name="remove_player">Ukloni igrača</string>
+    <string name="erase_mark">Obriši oznaku</string>
+
+    <string name="mark_check">Kvačica</string>
+    <string name="mark_cross">Križić</string>
+    <string name="mark_eye">Oko</string>
+    <string name="mark_circle">Krug</string>
+    <string name="mark_question">Upitnik</string>
+</resources>
