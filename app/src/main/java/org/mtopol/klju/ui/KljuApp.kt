@@ -1,6 +1,7 @@
 package org.mtopol.klju.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animate
 import androidx.compose.animation.core.spring
@@ -124,6 +125,8 @@ fun KljuApp(vm: KljuViewModel) {
         }
         PrivacyCover(
             Modifier.graphicsLayer { translationX = position(coverShown) * size.width },
+            // A swipe to the right brings in the menacing smiley, a swipe to the left the friendly one.
+            smiley = if (coverSide < 0) R.drawable.menacing_smiley else R.drawable.friendly_smiley,
             tilt = { coverTilt(coverSide, shown = if (coverShown) 1 - abs(offset) else abs(offset)) },
         )
     }
@@ -138,7 +141,7 @@ fun KljuApp(vm: KljuViewModel) {
 private fun coverTilt(side: Int, shown: Float) = side * MAX_TILT_DEGREES * shown
 
 @Composable
-private fun PrivacyCover(modifier: Modifier = Modifier, tilt: () -> Float) {
+private fun PrivacyCover(modifier: Modifier = Modifier, @DrawableRes smiley: Int, tilt: () -> Float) {
     Box(
         modifier
             .fillMaxSize()
@@ -147,7 +150,7 @@ private fun PrivacyCover(modifier: Modifier = Modifier, tilt: () -> Float) {
         contentAlignment = Alignment.Center,
     ) {
         Image(
-            painterResource(R.drawable.menacing_smiley),
+            painterResource(smiley),
             contentDescription = null,
             modifier = Modifier
                 .widthIn(max = 480.dp)
