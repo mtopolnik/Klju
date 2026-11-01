@@ -1,6 +1,6 @@
 package org.mtopol.klju
 
-enum class Mark { QUESTION, CROSS, CHECK, EYE, CIRCLE }
+enum class Mark { QUESTION, CROSS, CIRCLE, EYE, CHECK }
 
 /** A cell of the sheet: [card] is the sheet-wide card index, [player] the column. */
 data class Cell(val card: Int, val player: Int)
